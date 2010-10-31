@@ -1,13 +1,32 @@
 DeleteSoftly
 ============
 
-Introduction goes here.
-
+Add soft delete functionality to ActiveRecord models
 
 Example
 =======
+ class Post
+   delete_softly
+ end
 
-Example goes here.
+ class Comment
+   delete_softly false
+ end
+ 
+Now the following stuff works:
+ p1 = Post.create
+ p2 = Post.create
+ Post.count #=> 2
+ p2.destroy
+ Post.count #=> 1
+ Post.at(1.year.ago).count #=> 0
 
+ c1 = Comment.create
+ c2 = Comment.create
+ Comment.count #=> 2
+ c1.destroy
+ Comment.count #=> 2 (Since we added false)
+ Comment.active.count #=> 1
+ 
 
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+Copyright (c) 2010 [Benjamin ter Kuile], released under the MIT license

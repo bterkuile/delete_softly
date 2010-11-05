@@ -1,7 +1,8 @@
 DeleteSoftly
 ============
 
-Add soft delete functionality to ActiveRecord models
+Add soft delete functionality to ActiveRecord models. Important information:
+This is Rails3 only, no backwards compatibility.
 
 Example
 =======
@@ -19,7 +20,7 @@ Now the following stuff works:
  Post.count #=> 2
  p2.destroy
  Post.count #=> 1
- Post.at(1.year.ago).count #=> 0
+ Post.at_time(1.year.ago).count #=> 0
 
  c1 = Comment.create
  c2 = Comment.create

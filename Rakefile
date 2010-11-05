@@ -15,7 +15,7 @@ Rake::TestTask.new(:test) do |t|
 end
 
 desc 'Echoe'
-Echoe.new('delete_softly', '0.0.1') do |p|
+Echoe.new('delete_softly', '0.0.2') do |p|
   p.description = "Add soft delete functionality to your ActiveRecord models"
   p.url = "http://github.com/bterkuile/delete_softly"
   p.author = "Benjamin ter Kuile"

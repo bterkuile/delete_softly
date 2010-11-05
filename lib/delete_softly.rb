@@ -1,7 +1,8 @@
 # DeleteSoftly
+require 'active_record'
+require 'meta_where'
 require 'class_methods'
 require 'instance_methods'
-require 'meta_where'
 module DeleteSoftly
   module ARExtender
 
@@ -36,3 +37,14 @@ module DeleteSoftly
 end
 
 ActiveRecord::Base.send(:extend, DeleteSoftly::ARExtender)
+
+# Overwrite ActiveRecord::Base#default_scope
+class ActiveRecord::Base
+  # default_scope fix discussed in ticket:
+  # https://rails.lighthouseapp.com/projects/8994/tickets/4583-merge-default-scopes-by-default#ticket-4583-11
+  def self.default_scope(options = {})
+    key = :"#{self}_scoped_methods"
+    Thread.current[key] = nil
+    self.default_scoping << construct_finder_arel(options, default_scoping.pop)    
+  end
+end

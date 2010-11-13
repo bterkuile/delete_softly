@@ -4,17 +4,22 @@ DeleteSoftly
 Add soft delete functionality to ActiveRecord models. Important information:
 This is Rails3 only, no backwards compatibility.
 
+Tested with Postgresql
+
 Example
 =======
  class Post
+   # Replace normal behavior of object completely
    delete_softly
  end
 
  class Comment
+   # Rely on calling active for this object when needed
    delete_softly false
  end
  
 Now the following stuff works:
+== The Post model == 
  p1 = Post.create
  p2 = Post.create
  Post.count #=> 2
@@ -29,5 +34,6 @@ Now the following stuff works:
  Comment.count #=> 2 (Since we added false)
  Comment.active.count #=> 1
  
+See the rdoc for better examples and documentation
 
 Copyright (c) 2010 [Benjamin ter Kuile], released under the MIT license

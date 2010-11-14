@@ -1,3 +1,38 @@
 require 'rubygems'
 require 'test/unit'
+require 'arel'
 require 'active_support'
+require 'active_support/all'
+require 'lib/delete_softly'
+require 'sqlite3'
+
+ActiveRecord::Base.establish_connection(
+  :adapter => 'sqlite3',
+  :database => 'test/db.sqlite3'
+)
+class Post < ActiveRecord::Base
+  delete_softly
+  has_many :comments
+end
+
+class Comment < ActiveRecord::Base
+  belongs_to :post
+end
+unless Post.table_exists?
+  puts  "Creating  table posts"
+  ActiveRecord::Base.connection.create_table "posts" do |t|
+    t.string :title
+    t.text :body
+    t.datetime :deleted_at
+    t.timestamps
+  end
+end
+unless Comment.table_exists?
+  puts  "Creating  table comments"
+  ActiveRecord::Base.connection.create_table "comments" do |t|
+    t.string :email
+    t.text :body
+    t.datetime :deleted_at
+    t.timestamps
+  end
+end

@@ -1,4 +1,5 @@
 pkg
 doc
+test/db.sqlite3
 Manifest
 *.gem

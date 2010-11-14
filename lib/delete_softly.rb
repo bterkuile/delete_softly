@@ -4,7 +4,7 @@
 #  DeleteSoftly::ArExtender
 #  DeleteSoftly::ClassMethods
 #  DeleteSoftly::InstanceMethods
-# to get a feel of what is being done. This gem works throug many relations
+# to get a feel of what is being done. This gem works through many relations
 
 require 'active_record'
 require 'meta_where'

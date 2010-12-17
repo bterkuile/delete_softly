@@ -2,9 +2,15 @@ DeleteSoftly
 ============
 
 Add soft delete functionality to ActiveRecord models. Important information:
-This is Rails3 only, no backwards compatibility.
+This is Rails3 only, no backwards compatibility. Important features are
+* It works through relations
+* papertrail support
 
 Tested with Postgresql
+
+New in version 0.3
+* without_deleted, same as active, but not meant to be overwritten
+* deleted is back, misteriously disappeared in version 0.2
 
 Example
 =======

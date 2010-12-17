@@ -30,6 +30,12 @@ module DeleteSoftly
       where(:deleted_at => nil)
     end
 
+    # Same as active, but not to be overwritten. Active might become with disabled => false
+    # or something like that. Without deleted should remain intact
+    def without_deleted
+      where(:deleted_at => nil)
+    end
+
     # Include deleted items when performing queries
     #   class Item < ActiveRecord::Base
     #     default_scope order(:content)
@@ -62,6 +68,10 @@ module DeleteSoftly
         # Do not do anything special when there are no scoped_methods
         r = block_given? ? yield : scoped
       end
+    end
+
+    def deleted
+      with_deleted.where(:deleted_at.ne => nil)
     end
 
     # Support for paper_trail if it is installed as well. Then you can use:

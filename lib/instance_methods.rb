@@ -1,15 +1,9 @@
 module DeleteSoftly
   module InstanceMethods
 
-    # This method reports whether or not the record is active.
+    # This method reports whether or not the record has been soft deleted.
     #
-    def active?
-      !self.inactive?
-    end
-
-    # This method reports whether or not the record is inactive.
-    #
-    def inactive?
+    def deleted?
       self.deleted_at?
     end
     

@@ -1,6 +1,18 @@
 module DeleteSoftly
   module InstanceMethods
 
+    # This method reports whether or not the record is active.
+    #
+    def active?
+      !self.inactive?
+    end
+
+    # This method reports whether or not the record is inactive.
+    #
+    def inactive?
+      self.deleted_at?
+    end
+    
     # Custom destroy method for models using delete_softly
     def destroy 
       if persisted?

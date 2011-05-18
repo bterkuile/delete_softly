@@ -6,7 +6,7 @@ module DeleteSoftly
       if persisted?
         with_transaction_returning_status do
           _run_destroy_callbacks do
-            update_attributes(:deleted_at => Time.now.utc)
+            update_attribute :deleted_at, Time.now
           end
         end
       end

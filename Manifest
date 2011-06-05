@@ -1,0 +1,13 @@
+MIT-LICENSE
+README
+Rakefile
+delete_softly.gemspec
+init.rb
+install.rb
+lib/class_methods.rb
+lib/delete_softly.rb
+lib/instance_methods.rb
+test/delete_softly_test.rb
+test/test_helper.rb
+uninstall.rb
+Manifest
